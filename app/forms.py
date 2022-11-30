@@ -12,6 +12,15 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
 
 
+class EmptyForm(FlaskForm):
+    submit = SubmitField('Submit')
+
+
+class PostForm(FlaskForm):
+    post = TextAreaField('Say something', validators=[DataRequired(), Length(min=1, max=140)])
+    submit = SubmitField('Post')
+
+
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
@@ -38,7 +47,6 @@ class EditProfileForm(FlaskForm):
     def __init__(self, original_username, *args, **kwargs):
         super(EditProfileForm, self).__init__(*args, **kwargs)
         self.original_username = original_username
-
 
     def validate_username(self, username):
         if username.data != self.original_username:

@@ -1,3 +1,38 @@
-2022-11-28 16:10:35,834 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:44]
-2022-11-28 16:12:43,991 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:44]
-2022-11-28 16:14:32,959 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:44]
+2022-11-30 00:55:05,468 ERROR: Exception on /explore [GET] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "/media/hossam/C858381B58380B28/microblog/app/routes.py", line 33, in explore
+    return render_template('index.html',posts=posts, title='Explore')
+  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/usr/lib/python3/dist-packages/jinja2/environment.py", line 1291, in render
+    self.environment.handle_exception()
+  File "/usr/lib/python3/dist-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/media/hossam/C858381B58380B28/microblog/app/templates/index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/media/hossam/C858381B58380B28/microblog/app/templates/base.html", line 34, in top-level template code
+    {% block content %} {% endblock %}
+  File "/media/hossam/C858381B58380B28/microblog/app/templates/index.html", line 19, in block 'content'
+    {% include '_post.html' %}
+  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 62, in get_source
+    return self._get_source_fast(environment, template)
+  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 98, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: _post.html
+2022-11-30 00:55:48,572 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:44]
+2022-11-30 22:32:32,683 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:44]
+2022-11-30 22:50:59,394 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:44]
+2022-11-30 23:02:59,917 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:44]
+2022-11-30 23:06:23,263 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:44]
