@@ -36,3 +36,6 @@ jinja2.exceptions.TemplateNotFound: _post.html
 2022-11-30 22:50:59,394 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:44]
 2022-11-30 23:02:59,917 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:44]
 2022-11-30 23:06:23,263 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:44]
+2022-12-01 21:55:44,656 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:46]
+2022-12-01 21:55:51,138 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:46]
+2022-12-02 02:07:47,755 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:46]
