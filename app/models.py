@@ -1,12 +1,11 @@
-from datetime import datetime, time
+from datetime import datetime, time, timezone, timedelta
 from hashlib import md5
 
 import jwt
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-import app
-from app import db, login
+from app import db, login, app
 
 
 @login.user_loader
@@ -69,8 +68,8 @@ class User(UserMixin, db.Model):
     # Password Reset
     def get_reset_password_token(self, expires_in=600):
         return jwt.encode(
-            {'reset_password': self.id, 'exp': time() + expires_in}, app.Config['SECRET_KEY'],algorithm='HS256')
-
+            {'reset_password': self.id, 'exp': time().second + expires_in},
+            app.config['SECRET_KEY'], algorithm='HS256')
 
     @staticmethod
     def verify_reset_password_token(token):

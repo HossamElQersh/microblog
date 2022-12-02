@@ -73,7 +73,7 @@ def reset_password_request():
     return render_template('reset_password_request.html',
                            title='Reset Password', form=form)
 
-@app.route('/reset_password/<token>', methods=['GET',POST])
+@app.route('/reset_password/<token>', methods=['GET','POST'])
 def reset_password(token):
     if current_user.is_authdicated():
         return redirect(url_for('index'))
@@ -86,7 +86,7 @@ def reset_password(token):
         db.session.commit()
         flash('Password Changed !')
         redirect(url_for('login'))
-    return render_template('reset_password.html', form=form)
+    return render_template('reset_password_request.html', form=form)
 
 
 @app.route('/logout')
