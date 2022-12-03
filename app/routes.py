@@ -166,7 +166,7 @@ def follow(username):
             return redirect(url_for('user', username=username))
         current_user.follow(user)
         db.session.commit()
-        flash(_('You are following %(username) Now!',username=username))
+        flash(_('You are following %(username)s Now!',username=username))
         return redirect(url_for('user', username=username))
     else:
         return redirect(url_for('index'))
@@ -179,7 +179,7 @@ def unfollow(username):
     if form.validate_on_submit():
         user = User.query.filter_by(username=username).first()
         if user is None:
-            flash(_('User %(username) not Found!',username=username))
+            flash(_('User %(username)s not Found!',username=username))
             return redirect(url_for('index'))
         if user is current_user:
             flash(_('You cann\'t unfollow yourself'))
@@ -189,7 +189,7 @@ def unfollow(username):
         #     return redirect(url_for('user',username=username))
         current_user.unfollow(user)
         db.session.commit()
-        flash(_('Not following %(username)', username=username))
+        flash(_('Not following %(username)s', username=username))
         return redirect(url_for('user', username=username))
     else:
         return redirect(url_for('index'))
