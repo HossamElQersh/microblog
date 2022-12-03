@@ -1,4 +1,4 @@
-2022-12-02 03:33:40,470 ERROR: Exception on /reset_password_request [POST] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
+2022-12-03 10:57:04,082 ERROR: Exception on /user/Hossam [GET] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
 Traceback (most recent call last):
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2525, in wsgi_app
     response = self.full_dispatch_request()
@@ -8,15 +8,47 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1796, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/media/hossam/C858381B58380B28/microblog/app/routes.py", line 70, in reset_password_request
-    send_password_reset_email(user)
-  File "/media/hossam/C858381B58380B28/microblog/app/email.py", line 14, in send_password_reset_email
-    token = user.get_reset_password_token()
-  File "/media/hossam/C858381B58380B28/microblog/app/models.py", line 71, in get_reset_password_token
-    exp = time() + 600
-TypeError: unsupported operand type(s) for +: 'datetime.time' and 'int'
-2022-12-02 03:34:48,465 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:46]
-2022-12-02 03:34:52,062 ERROR: Exception on /reset_password_request [POST] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "/media/hossam/C858381B58380B28/microblog/app/routes.py", line 126, in user
+    return render_template('user.html', user=user, posts=posts.items,
+  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/usr/lib/python3/dist-packages/jinja2/environment.py", line 1291, in render
+    self.environment.handle_exception()
+  File "/usr/lib/python3/dist-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/media/hossam/C858381B58380B28/microblog/app/templates/user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/media/hossam/C858381B58380B28/microblog/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
+    {% block content -%}
+  File "/media/hossam/C858381B58380B28/microblog/app/templates/base.html", line 48, in block 'content'
+    {% block app_content %}{% endblock %}
+  File "/media/hossam/C858381B58380B28/microblog/app/templates/user.html", line 35, in block 'app_content'
+    {% include '_posts.html' %}
+  File "/media/hossam/C858381B58380B28/microblog/app/templates/_posts.html", line 12, in top-level template code
+    said {{moment(post.datetime).fromNow()}}
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_moment/__init__.py", line 229, in fromNow
+    return self._render("fromNow", no_suffix=int(no_suffix),
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_moment/__init__.py", line 186, in _render
+    t = self._timestamp_as_iso_8601(self.timestamp)
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_moment/__init__.py", line 182, in _timestamp_as_iso_8601
+    return timestamp.strftime('%Y-%m-%dT%H:%M:%S' + tz)
+jinja2.exceptions.UndefinedError: 'app.models.Post object' has no attribute 'datetime'
+2022-12-03 10:57:32,368 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:50]
+2022-12-03 23:26:39,448 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:52]
+2022-12-04 00:59:40,062 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:52]
+2022-12-04 01:00:41,215 ERROR: Exception on /follow/Shehab [POST] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
 Traceback (most recent call last):
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2525, in wsgi_app
     response = self.full_dispatch_request()
@@ -26,15 +58,23 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1796, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/media/hossam/C858381B58380B28/microblog/app/routes.py", line 70, in reset_password_request
-    send_password_reset_email(user)
-  File "/media/hossam/C858381B58380B28/microblog/app/email.py", line 14, in send_password_reset_email
-    token = user.get_reset_password_token()
-  File "/media/hossam/C858381B58380B28/microblog/app/models.py", line 71, in get_reset_password_token
-    exp = datetime.timedelta(seconds=10)
-AttributeError: type object 'datetime.datetime' has no attribute 'timedelta'
-2022-12-02 03:35:09,873 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:46]
-2022-12-02 03:35:13,709 ERROR: Exception on /reset_password_request [POST] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "/media/hossam/C858381B58380B28/microblog/app/routes.py", line 169, in follow
+    flash(_('You are following %(username) Now!',username=username))
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_babel/__init__.py", line 689, in gettext
+    return get_domain().gettext(*args, **kwargs)
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_babel/__init__.py", line 586, in gettext
+    t = self.get_translations()
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_babel/__init__.py", line 554, in get_translations
+    locale = get_locale()
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_babel/__init__.py", line 226, in get_locale
+    rv = babel.locale_selector_func()
+  File "/media/hossam/C858381B58380B28/microblog/app/__init__.py", line 56, in get_locale
+    return request.accept_langauge.best_match(app.config['LANGUAGES'])
+AttributeError: 'Request' object has no attribute 'accept_langauge'
+2022-12-04 01:01:59,973 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:52]
+2022-12-04 01:02:03,758 ERROR: Exception on /follow/Shehab [POST] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
 Traceback (most recent call last):
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2525, in wsgi_app
     response = self.full_dispatch_request()
@@ -44,46 +84,12 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1796, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/media/hossam/C858381B58380B28/microblog/app/routes.py", line 70, in reset_password_request
-    send_password_reset_email(user)
-  File "/media/hossam/C858381B58380B28/microblog/app/email.py", line 14, in send_password_reset_email
-    token = user.get_reset_password_token()
-  File "/media/hossam/C858381B58380B28/microblog/app/models.py", line 74, in get_reset_password_token
-    {'reset_password': self.id, "exp": datetime.now(tz=timezone.utc) + timedelta(seconds=30)}, app.Config['SECRET_KEY'],algorithm='HS256')
-TypeError: 'type' object is not subscriptable
-2022-12-02 03:35:39,473 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:46]
-2022-12-02 03:35:53,347 ERROR: Exception on /reset_password_request [POST] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/media/hossam/C858381B58380B28/microblog/app/routes.py", line 70, in reset_password_request
-    send_password_reset_email(user)
-  File "/media/hossam/C858381B58380B28/microblog/app/email.py", line 14, in send_password_reset_email
-    token = user.get_reset_password_token()
-  File "/media/hossam/C858381B58380B28/microblog/app/models.py", line 72, in get_reset_password_token
-    {'reset_password': self.id, "exp": timedelta(seconds=expires_in)}, app.Config['SECRET_KEY'],algorithm='HS256')
-TypeError: 'type' object is not subscriptable
-2022-12-02 03:36:29,720 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:46]
-2022-12-02 03:36:34,213 ERROR: Exception on /reset_password_request [POST] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/media/hossam/C858381B58380B28/microblog/app/routes.py", line 70, in reset_password_request
-    send_password_reset_email(user)
-  File "/media/hossam/C858381B58380B28/microblog/app/email.py", line 14, in send_password_reset_email
-    token = user.get_reset_password_token()
-  File "/media/hossam/C858381B58380B28/microblog/app/models.py", line 72, in get_reset_password_token
-    {'reset_password': self.id, "exp": timedelta(seconds=30)}, app.Config['SECRET_KEY'],algorithm='HS256')
-TypeError: 'type' object is not subscriptable
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "/media/hossam/C858381B58380B28/microblog/app/routes.py", line 169, in follow
+    flash(_('You are following %(username) Now!',username=username))
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_babel/__init__.py", line 689, in gettext
+    return get_domain().gettext(*args, **kwargs)
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_babel/__init__.py", line 588, in gettext
+    return s if not variables else s % variables
+ValueError: unsupported format character 'N' (0x4e) at index 30
