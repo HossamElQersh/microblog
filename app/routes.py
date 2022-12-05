@@ -1,14 +1,15 @@
 from datetime import datetime
 
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, g
 from flask_login import current_user, logout_user, login_required, login_user
+from langdetect import detect
 from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import LoginForm, EditProfileForm, EmptyForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm
 from app.models import User, Post
 from app.email import send_password_reset_email
 from app.forms import RegistrationForm
-from flask_babel import _
+from flask_babel import _, get_locale
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -17,7 +18,11 @@ from flask_babel import _
 def index():
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(body=form.post.data, user_id=current_user.id)
+        try :
+            langauge = detect(form.post.data)
+        except:
+            langauge = ''
+        post = Post(body=form.post.data, user_id=current_user.id, langauge=langauge)
         db.session.add(post)
         db.session.commit()
         flash(_('Posted!'))
@@ -147,6 +152,7 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+    g.locale = str(get_locale())
 
 
 # Following and UnFollowing Users

@@ -15,3 +15,7 @@
             </td>
         </tr>
     </table>
+    {% if post.langauge and post.langauge != g.locale%}
+    <br><br>
+    <a href="#">{{_('Translate')}}</a>
+    {% endif %}
