@@ -6,8 +6,6 @@ from app.models import User
 from flask_babel import lazy_gettext as _l
 
 
-
-
 class EmptyForm(FlaskForm):
     submit = SubmitField(_l('Submit'))
 
@@ -31,5 +29,3 @@ class EditProfileForm(FlaskForm):
             user = User.query.filter_by(username=username.data).first()
             if user is not None:
                 raise ValidationError(_l('Please use another username'))
-
-
