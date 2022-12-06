@@ -1,4 +1,4 @@
-2022-12-06 02:58:28,895 ERROR: Exception on / [GET] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
+2022-12-06 03:02:17,112 ERROR: Exception on / [GET] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
 Traceback (most recent call last):
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1820, in full_dispatch_request
     rv = self.dispatch_request()
@@ -45,17 +45,16 @@ Traceback (most recent call last):
     {% block body -%}
   File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block 'body'
     {% block navbar %}
-  File "/media/hossam/C858381B58380B28/microblog/app/templates/base.html", line 17, in block 'navbar'
-    <a class="navbar-brand" href="{{ url_for('main./') }}">Microblog</a>
+  File "/media/hossam/C858381B58380B28/microblog/app/templates/base.html", line 22, in block 'navbar'
+    <li><a href="{{ url_for('main.explore') }}">{{ _('Explore') }}</a></li>
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2031, in url_for
     return self.handle_url_build_error(error, endpoint, values)
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2020, in url_for
     rv = url_adapter.build(  # type: ignore[union-attr]
   File "/usr/local/lib/python3.10/dist-packages/werkzeug/routing/map.py", line 917, in build
     raise BuildError(endpoint, values, method, self)
-werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'main./'. Did you mean 'auth.login' instead?
-2022-12-06 03:02:14,360 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:74]
-2022-12-06 03:02:16,650 ERROR: Exception on / [GET] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'main.explore'. Did you mean 'auth.login' instead?
+2022-12-06 03:02:17,260 ERROR: Exception on / [GET] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
 Traceback (most recent call last):
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1820, in full_dispatch_request
     rv = self.dispatch_request()
