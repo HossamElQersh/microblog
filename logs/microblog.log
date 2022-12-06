@@ -1,4 +1,4 @@
-2022-12-06 02:05:12,871 ERROR: Exception on /login [GET] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
+2022-12-06 02:58:28,895 ERROR: Exception on / [GET] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
 Traceback (most recent call last):
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1820, in full_dispatch_request
     rv = self.dispatch_request()
@@ -46,67 +46,11 @@ Traceback (most recent call last):
   File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block 'body'
     {% block navbar %}
   File "/media/hossam/C858381B58380B28/microblog/app/templates/base.html", line 17, in block 'navbar'
-    <a class="navbar-brand" href="{{ url_for('index') }}">Microblog</a>
+    <a class="navbar-brand" href="{{ url_for('main./') }}">Microblog</a>
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2031, in url_for
     return self.handle_url_build_error(error, endpoint, values)
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2020, in url_for
     rv = url_adapter.build(  # type: ignore[union-attr]
   File "/usr/local/lib/python3.10/dist-packages/werkzeug/routing/map.py", line 917, in build
     raise BuildError(endpoint, values, method, self)
-werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'index'. Did you mean 'auth.login' instead?
-2022-12-06 02:05:13,233 ERROR: Exception on /favicon.ico [GET] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1785, in dispatch_request
-    self.raise_routing_exception(req)
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1767, in raise_routing_exception
-    raise request.routing_exception  # type: ignore
-  File "/usr/local/lib/python3.10/dist-packages/flask/ctx.py", line 351, in match_request
-    result = self.url_adapter.match(return_rule=True)  # type: ignore
-  File "/usr/local/lib/python3.10/dist-packages/werkzeug/routing/map.py", line 624, in match
-    raise NotFound() from None
-werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1666, in handle_user_exception
-    return self.handle_http_exception(e)
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1606, in handle_http_exception
-    return self.ensure_sync(handler)(e)
-  File "/media/hossam/C858381B58380B28/microblog/app/errors/handlers.py", line 8, in not_found_error
-    return render_template('errors/404.html'), 404
-  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 147, in render_template
-    return _render(app, template, context)
-  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 130, in _render
-    rv = template.render(context)
-  File "/usr/lib/python3/dist-packages/jinja2/environment.py", line 1291, in render
-    self.environment.handle_exception()
-  File "/usr/lib/python3/dist-packages/jinja2/environment.py", line 925, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "/media/hossam/C858381B58380B28/microblog/app/templates/errors/404.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/media/hossam/C858381B58380B28/microblog/app/templates/base.html", line 1, in top-level template code
-    {% extends 'bootstrap/base.html' %}
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
-    {% block doc -%}
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
-    {%- block html %}
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
-    {% block body -%}
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block 'body'
-    {% block navbar %}
-  File "/media/hossam/C858381B58380B28/microblog/app/templates/base.html", line 17, in block 'navbar'
-    <a class="navbar-brand" href="{{ url_for('index') }}">Microblog</a>
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2031, in url_for
-    return self.handle_url_build_error(error, endpoint, values)
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2020, in url_for
-    rv = url_adapter.build(  # type: ignore[union-attr]
-  File "/usr/local/lib/python3.10/dist-packages/werkzeug/routing/map.py", line 917, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'index'. Did you mean 'auth.login' instead?
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'main./'. Did you mean 'auth.login' instead?
