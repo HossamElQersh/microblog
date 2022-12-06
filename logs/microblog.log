@@ -1,17 +1,30 @@
-2022-12-03 10:57:04,082 ERROR: Exception on /user/Hossam [GET] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
+2022-12-06 02:05:12,871 ERROR: Exception on /login [GET] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1785, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1767, in raise_routing_exception
+    raise request.routing_exception  # type: ignore
+  File "/usr/local/lib/python3.10/dist-packages/flask/ctx.py", line 351, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/usr/local/lib/python3.10/dist-packages/werkzeug/routing/map.py", line 624, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
 Traceback (most recent call last):
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2525, in wsgi_app
     response = self.full_dispatch_request()
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1822, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/media/hossam/C858381B58380B28/microblog/app/routes.py", line 126, in user
-    return render_template('user.html', user=user, posts=posts.items,
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1666, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1606, in handle_http_exception
+    return self.ensure_sync(handler)(e)
+  File "/media/hossam/C858381B58380B28/microblog/app/errors/handlers.py", line 8, in not_found_error
+    return render_template('errors/404.html'), 404
   File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 147, in render_template
     return _render(app, template, context)
   File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 130, in _render
@@ -20,7 +33,7 @@ Traceback (most recent call last):
     self.environment.handle_exception()
   File "/usr/lib/python3/dist-packages/jinja2/environment.py", line 925, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/media/hossam/C858381B58380B28/microblog/app/templates/user.html", line 1, in top-level template code
+  File "/media/hossam/C858381B58380B28/microblog/app/templates/errors/404.html", line 1, in top-level template code
     {% extends "base.html" %}
   File "/media/hossam/C858381B58380B28/microblog/app/templates/base.html", line 1, in top-level template code
     {% extends 'bootstrap/base.html' %}
@@ -30,70 +43,70 @@ Traceback (most recent call last):
     {%- block html %}
   File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
     {% block body -%}
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
-    {% block content -%}
-  File "/media/hossam/C858381B58380B28/microblog/app/templates/base.html", line 48, in block 'content'
-    {% block app_content %}{% endblock %}
-  File "/media/hossam/C858381B58380B28/microblog/app/templates/user.html", line 35, in block 'app_content'
-    {% include '_posts.html' %}
-  File "/media/hossam/C858381B58380B28/microblog/app/templates/_posts.html", line 12, in top-level template code
-    said {{moment(post.datetime).fromNow()}}
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_moment/__init__.py", line 229, in fromNow
-    return self._render("fromNow", no_suffix=int(no_suffix),
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_moment/__init__.py", line 186, in _render
-    t = self._timestamp_as_iso_8601(self.timestamp)
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_moment/__init__.py", line 182, in _timestamp_as_iso_8601
-    return timestamp.strftime('%Y-%m-%dT%H:%M:%S' + tz)
-jinja2.exceptions.UndefinedError: 'app.models.Post object' has no attribute 'datetime'
-2022-12-03 10:57:32,368 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:50]
-2022-12-03 23:26:39,448 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:52]
-2022-12-04 00:59:40,062 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:52]
-2022-12-04 01:00:41,215 ERROR: Exception on /follow/Shehab [POST] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block 'body'
+    {% block navbar %}
+  File "/media/hossam/C858381B58380B28/microblog/app/templates/base.html", line 17, in block 'navbar'
+    <a class="navbar-brand" href="{{ url_for('index') }}">Microblog</a>
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2031, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2020, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/usr/local/lib/python3.10/dist-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'index'. Did you mean 'auth.login' instead?
+2022-12-06 02:05:13,233 ERROR: Exception on /favicon.ico [GET] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1785, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1767, in raise_routing_exception
+    raise request.routing_exception  # type: ignore
+  File "/usr/local/lib/python3.10/dist-packages/flask/ctx.py", line 351, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/usr/local/lib/python3.10/dist-packages/werkzeug/routing/map.py", line 624, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
 Traceback (most recent call last):
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2525, in wsgi_app
     response = self.full_dispatch_request()
   File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1822, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/media/hossam/C858381B58380B28/microblog/app/routes.py", line 169, in follow
-    flash(_('You are following %(username) Now!',username=username))
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_babel/__init__.py", line 689, in gettext
-    return get_domain().gettext(*args, **kwargs)
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_babel/__init__.py", line 586, in gettext
-    t = self.get_translations()
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_babel/__init__.py", line 554, in get_translations
-    locale = get_locale()
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_babel/__init__.py", line 226, in get_locale
-    rv = babel.locale_selector_func()
-  File "/media/hossam/C858381B58380B28/microblog/app/__init__.py", line 56, in get_locale
-    return request.accept_langauge.best_match(app.config['LANGUAGES'])
-AttributeError: 'Request' object has no attribute 'accept_langauge'
-2022-12-04 01:01:59,973 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:52]
-2022-12-04 01:02:03,758 ERROR: Exception on /follow/Shehab [POST] [in /usr/local/lib/python3.10/dist-packages/flask/app.py:1741]
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/media/hossam/C858381B58380B28/microblog/app/routes.py", line 169, in follow
-    flash(_('You are following %(username) Now!',username=username))
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_babel/__init__.py", line 689, in gettext
-    return get_domain().gettext(*args, **kwargs)
-  File "/home/hossam/.local/lib/python3.10/site-packages/flask_babel/__init__.py", line 588, in gettext
-    return s if not variables else s % variables
-ValueError: unsupported format character 'N' (0x4e) at index 30
-2022-12-04 04:33:09,154 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:52]
-2022-12-04 04:33:18,023 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:52]
-2022-12-05 11:36:41,079 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:52]
-2022-12-05 11:36:54,055 INFO: Microblog startup [in /media/hossam/C858381B58380B28/microblog/app/__init__.py:52]
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1666, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1606, in handle_http_exception
+    return self.ensure_sync(handler)(e)
+  File "/media/hossam/C858381B58380B28/microblog/app/errors/handlers.py", line 8, in not_found_error
+    return render_template('errors/404.html'), 404
+  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/usr/lib/python3/dist-packages/jinja2/environment.py", line 1291, in render
+    self.environment.handle_exception()
+  File "/usr/lib/python3/dist-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/media/hossam/C858381B58380B28/microblog/app/templates/errors/404.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/media/hossam/C858381B58380B28/microblog/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/home/hossam/.local/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block 'body'
+    {% block navbar %}
+  File "/media/hossam/C858381B58380B28/microblog/app/templates/base.html", line 17, in block 'navbar'
+    <a class="navbar-brand" href="{{ url_for('index') }}">Microblog</a>
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2031, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2020, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/usr/local/lib/python3.10/dist-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'index'. Did you mean 'auth.login' instead?
