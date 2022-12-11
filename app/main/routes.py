@@ -97,13 +97,15 @@ def edit_profile():
     return render_template('edit_profile.html', title=_('Edit Profile'),
                            form=form)
 
+
 @bp.route('/user/<username>/')
 @login_required
 def user_popup(username):
     user = User.query.filter_by(username=username).first_or_404()
     if user:
         form = EmptyForm()
-        return render_template('user_popup.html',username=username,form=form)
+        return render_template('user_popup.html', username=username, form=form)
+
 
 @bp.route('/follow/<username>', methods=['POST'])
 @login_required
