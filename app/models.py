@@ -34,14 +34,12 @@ class User(UserMixin, db.Model):
                                secondaryjoin=(followers.c.followed_id == id),
                                backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
     messages_sent = db.relationship('Message',
-                                    foreign_keys='message.sender_id',
-                                    backref='author',
-                                    lazy='dynamic')
+                                    foreign_keys='Message.sender_id',
+                                    backref='author', lazy='dynamic')
     messages_received = db.relationship('Message',
-                                    foreign_keys='message.recipient_id',
-                                    backref='author',
-                                    lazy='dynamic')
-    last_massage_read_time = db.Column(db.DateTime)
+                                        foreign_keys='Message.recipient_id',
+                                        backref='recipient', lazy='dynamic')
+    last_message_read_time = db.Column(db.DateTime)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -84,10 +82,11 @@ class User(UserMixin, db.Model):
     @staticmethod
     def verify_reset_password_token(token):
         try:
-            id = jwt.decode(token,current_app.config['SECRET_KEY'],algorithms=['HS256'])['reset_password']
+            id = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])['reset_password']
         except:
             return
         return User.query.get(id)
+
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -99,6 +98,7 @@ class Post(db.Model):
     def __repr__(self):
         return '<Post {}>'.format(self.body)
 
+
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -108,5 +108,3 @@ class Message(db.Model):
 
     def __repr__(self):
         return '<Message {}>'.format(self.body)
-
-
