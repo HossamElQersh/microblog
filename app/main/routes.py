@@ -29,6 +29,7 @@ def index():
             language = detect(form.post.data)
         except LangDetectException:
             language = ''
+        print(language)
         post = Post(body=form.post.data, author=current_user,
                     language=language)
         db.session.add(post)
@@ -98,13 +99,13 @@ def edit_profile():
                            form=form)
 
 
-@bp.route('/user/<username>/')
+@bp.route('/user/<username>/popup')
 @login_required
 def user_popup(username):
     user = User.query.filter_by(username=username).first_or_404()
     if user:
         form = EmptyForm()
-        return render_template('user_popup.html', username=username, form=form)
+        return render_template('user_popup.html', user=user, form=form)
 
 
 @bp.route('/follow/<username>', methods=['POST'])
