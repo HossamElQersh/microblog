@@ -3,7 +3,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.validators import ValidationError, DataRequired, Length
 
-from app.models import User
+from app.models import Us
+
+er
 
 
 class EditProfileForm(FlaskForm):
@@ -29,4 +31,9 @@ class EmptyForm(FlaskForm):
 
 class PostForm(FlaskForm):
     post = TextAreaField(_l('Say something'), validators=[DataRequired()])
+    submit = SubmitField(_l('Submit'))
+
+
+class Massage(FlaskForm):
+    message = TextAreaField(_l('Message'), validators=[DataRequired(), Length(min=0, max=140)])
     submit = SubmitField(_l('Submit'))
