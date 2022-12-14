@@ -43,8 +43,6 @@
             {% endfor %}
         {% endif %}
         {% endwith %}
-
-        {# application content needs to be provided in the app_content block #}
         {% block app_content %}{% endblock %}
     </div>
 {% endblock %}
@@ -53,5 +51,12 @@
     {{ super() }}
     {{ moment.include_moment() }}
     {{ moment.lang(g.locale) }}
+<script>
+
+
+    $(function() {
+        // write start up code here
+    });
+</script>
 
 {% endblock %}
