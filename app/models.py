@@ -1,6 +1,7 @@
 import json
 from datetime import datetime, time
 from hashlib import md5
+from time import time
 
 import jwt
 from flask import current_app
