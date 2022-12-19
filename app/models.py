@@ -143,7 +143,7 @@ class Task(db.Model):
     name = db.Column(db.String(128), index=True)
     description = db.Column(db.String(128))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    complete = db.Column(db.Boolean, defualt=False)
+    complete = db.Column(db.Boolean, default=False)
 
     def get_rq_job(self):
         try:
