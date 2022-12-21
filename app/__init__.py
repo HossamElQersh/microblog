@@ -13,6 +13,7 @@ from flask_moment import Moment
 from flask_babel import Babel, lazy_gettext as _l
 from config import Config
 from redis import Redis
+
 db = SQLAlchemy()
 migrate = Migrate()
 login = LoginManager()
@@ -36,6 +37,8 @@ def create_app(config_class=Config):
     moment.init_app(app)
     babel.init_app(app)
 
+    from app.api import bp as api_bp
+    app.register_blueprint(api_bp, url_prefix='/api')
     from app.errors import bp as errors_bp
     app.register_blueprint(errors_bp)
 
@@ -46,7 +49,7 @@ def create_app(config_class=Config):
     app.register_blueprint(main_bp)
 
     app.redis = Redis.from_url(app.config['REDIS_URL'])
-    app.task_queue = rq.Queue('microblog-tasks',connection=app.redis)
+    app.task_queue = rq.Queue('microblog-tasks', connection=app.redis)
     if not app.debug and not app.testing:
         if app.config['MAIL_SERVER']:
             auth = None
