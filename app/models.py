@@ -1,5 +1,7 @@
+import base64
 import json
-from datetime import datetime, time
+import os
+from datetime import datetime, time, timedelta
 from hashlib import md5
 from time import time
 
@@ -71,6 +73,8 @@ class User(UserMixin, db.Model, PaginatedAPIMixin):
     notifications = db.relationship('Notification', backref='user', lazy='dynamic')
     tasks = db.relationship('Task', backref='user', lazy='dynamic')
     last_message_read_time = db.Column(db.DateTime)
+    token = db.Column(db.String(32), index=True, unique=True)
+    token_expiration = db.Column(db.DateTime)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -171,6 +175,24 @@ class User(UserMixin, db.Model, PaginatedAPIMixin):
             if new_user and 'password' in data:
                 self.set_password(password=data['password'])
 
+    def get_token(self, expires_in=3600):
+        now = datetime.utcnow()
+        if self.token and self.token_expiration > now + timedelta(seconds=60):
+            return self.token
+        self.token = base64.b64encode(os.urandom(24)).decode('utf-8')
+        self.token_expiration = now + timedelta(seconds=expires_in)
+        db.session.add(self)
+        return self.token
+
+    def invoke_token(self):
+        self.token_expiration = datetime.utcnow() - timedelta(seconds=1)
+
+    @staticmethod
+    def check_token(token):
+        user = User.query.filter_by(token=token).first()
+        if user is None or user.token_expiration < datetime.now():
+            return None
+        return user
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
